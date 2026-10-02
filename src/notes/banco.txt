@@ -1,0 +1,4 @@
+user: id, nome, email, senha, nivel (2-3 niveis?)
+categoria: id, nome, descrição
+equipamento: id, nome, tipo, modelo, descrição, data de aquisição, valor de aquisição, quantidade, status (disponível, manutenção, emprestado, usando, programado), foto?, id_categoria
+emprestimo: id, descrição, id_usuario, data da retirada, data prevista da devolução, data de devolução, evento(campo opcional mais pra saber se é pra algum evento ou se foi emprestado pra alguém), status(emprestado ,atrasado, devolvido)

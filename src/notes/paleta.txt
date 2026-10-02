@@ -1,0 +1,6 @@
+black: #000000;
+white: #FDFDFD;
+gray: #F6F6F6;
+dark-green: #1E7F4F;
+light-green: #1E7C4E;
+marker: #FEE7B2;
