@@ -1,0 +1,23 @@
+/*-------------------*/
+/* -------ROOT------ */
+/*-------------------*/
+
+:root {
+    --black: #000000;
+    --white: #FDFDFD;
+    --gray: #F6F6F6;
+    --dark-green: #157043;
+    --light-green: #1E7C4E;
+    --marker: #FEE7B2;
+    --test: #9d00ff;
+}
+
+.bg-test {
+    background-color: var(--test);
+    background-image: url(../assets/img_test.jpg);
+    background-size: cover;
+}
+
+.color-test {
+    color: var(--test);
+}
