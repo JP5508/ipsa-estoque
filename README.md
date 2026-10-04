@@ -3,7 +3,9 @@
 Este repositório contém o **sistema de controle de estoque de equipamentos de multimídia e som** para a **Igreja Presbiteriana de Santo Amaro**
 
 [SITE DA IPSA](https://ipsantoamaro.com.br/)
+
 [YOUTUBE DA IPSA](https://youtube.com/ipsantoamaro)
+
 [INSTAGRAM DA IPSA](https://instagram.com/ipsantoamaro)
 
 ----
