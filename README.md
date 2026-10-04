@@ -9,14 +9,16 @@ Este repositório contém o **sistema de controle de estoque de equipamentos de 
 [INSTAGRAM DA IPSA](https://instagram.com/ipsantoamaro)
 
 ----
+## EQUIPE
 
-## DESENVOLVIDO POR:
+### desenvolvido por:
 JOÃO PEDRO ALVES OLIVEIRA
 
-## ORIENTAÇÃO:
+### orientação:
 RAUL CHAVARRIA
 
-Período de desenvolvimento: 2026
+### período de desenvolvimento:
+10/2026 - ...
 
 ----
 
