@@ -14,7 +14,8 @@
 
 html {
     font-family: Arial, Helvetica, sans-serif;
-    overflow-x: clip; /* Bloqueia overflow horizontal */
+    overflow-x: clip;
+    /* Bloqueia overflow horizontal */
     overscroll-behavior-x: none;
 }
 
@@ -26,25 +27,22 @@ body {
         "header header"
         "aside section"
         "footer footer";
-    overflow-x: clip; /* Bloqueia overflow horizontal */
+    overflow-x: clip;
+    /* Bloqueia overflow horizontal */
     overscroll-behavior-x: none;
 }
 
 header {
-    /*USAR PARTE DO CSS DO TCC PARA O HEADER
+    grid-area: header;
+    position: sticky;
     z-index: 10;
     top: 0;
-    position: sticky;
-    grid-area: navbar;
-    height: 10vh;
-    background-color: var(--light-green);
     display: flex;
     justify-content: stretch;
+    /* NÃO LEMBRO OQ ISSO FAZ*/
     align-items: center;
-    padding-left: 10%;
-    padding-right: 10%;
-    gap: 10pt; */
-    grid-area: header;
+    padding-left: 1rem;
+    padding-right: 1rem;
     color: var(--white);
     background-color: var(--light-green);
     height: 8vh;
@@ -54,15 +52,43 @@ aside {
     grid-area: aside;
     color: var(--black);
     background-color: var(--gray);
-    width: 20vw;
+    width: auto;
+    display: block;
 }
 
 section {
     grid-area: section;
     color: var(--black);
     background-color: var(--white);
-    /* TEM QUER VER ISSO AQUI TAMBÉM
-    height: 88vh; */
+    height: 88vh;
+    /* PENSAR MELHOR QUANTO A ISSO */
+    padding: 1%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr {
+    border-bottom: 1px solid var(--black);
+    background-color: var(--white);
+}
+
+tr:hover {
+    background-color: var(--gray);
+}
+
+th {
+    color: var(--white);
+    background-color: var(--dark-green);
+    padding: 0.5rem;
+    text-align: center;
+}
+
+td {
+    padding: 0.5rem;
+    border: 0px solid var(--black);
 }
 
 footer {
@@ -79,9 +105,98 @@ footer {
 /*---------ID----------*/
 /*---------------------*/
 
+#header-logo {
+    height: 100%;
+}
+
+#user-link {
+    height: 50%;
+    font-size: clamp(0.5rem, 2vw, calc(1vw + 0.3rem));
+    text-decoration: none;
+    display: flex;
+    justify-self: flex-end;
+    align-items: center;
+    border-radius: 1rem;
+    margin-left: auto;
+    padding: 0.5rem;
+}
+
+#user-link:hover {
+    background-color: var(--dark-green);
+}
+
+#user-link p {
+    color: var(--white);
+    font-size: clamp(0.5rem, 2vw, calc(1vw + 0.3rem));
+}
+
+#user-link img {
+    height: 100%;
+}
+
+#user-icon {
+
+    height: 80%;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+#menu-btn {
+    border: none;
+    background-color: transparent;
+    height: 80%;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+}
+
+#menu-btn:hover {
+    background-color: var(--dark-green);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#menu-btn img {
+    height: 100%;
+}
+
+#options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin: 1rem; */
+}
+
+#table {
+    height: 100%;
+    /* DEPOIS EU VEJO MELHOR O QUE ISSO FAZ */
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
 /*---------------------*/
 /*--------CLASS--------*/
 /*---------------------*/
+
+.nav-link {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    color: var(--black);
+    text-decoration: none;
+    /* font-size: clamp(0.5rem, 2vw, calc(1vw + 0.3rem)); */
+}
+
+.nav-link:hover {
+    background-color: var(--marker);
+}
+
+.nav-link img {
+    height: 100%;
+    margin-right: 0.5rem;
+}
 
 /*---------------------*/
 /*---TEXT-FORMATTING---*/
@@ -123,10 +238,6 @@ a {
     /* font-size: clamp(0.5rem, 2vw, calc(1vw + 0.2rem)); */
     font-size: clamp(0.8rem, 2vw, calc(1vw + 0.3rem));
 }
-
-/*---------------------*/
-/*----PLACEHOLDERS-----*/
-/*---------------------*/
 
 /*---------------------*/
 /*--------MOBILE-------*/

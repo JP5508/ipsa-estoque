@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <title>Ipsa Estoque</title>
+    <link rel="icon" type="image/x-icon" href="../assets/logo_ipsa_color.png">
+    <!-- META TAGS -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- CSS STYLE -->
+    <link href="../styles/home.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <button id="menu-btn" onclick="toggleMenu()">
+            <img src="../assets/icon_menu_white.svg" alt="Ícone de menu" />
+        </button>
+        <img id="header-logo" src="../assets/logo_ipsa_white.png" alt="Logo da IPSA" />
+        <a id="user-link" href="../pages/login.html">
+            <p>Usuário</p>
+            <img id="user-icon" src="../assets/profile_default.png" alt="Ícone de usuário" />
+        </a>
+    </header>
+
+    <!-- ASIDE -->
+    <aside id="aside">
+        <a class="nav-link" href="../pages/products.html">
+            <img src="../assets/icon_inventory_black.svg" alt="Ícone de estoque" />
+            <p>Estoque</p>
+        </a>
+        <a class="nav-link" href="../pages/products.html">
+            <img src="../assets/icon_balance_black.svg" alt="Ícone de empréstimos" />
+            <p>Empréstimos</p>
+        </a>
+        <a class="nav-link" href="../pages/products.html">
+            <img src="../assets/icon_report_black.svg" alt="Ícone de relatórios" />
+            <p>Calendário</p>
+        </a>
+        <a class="nav-link" href="../pages/products.html">
+            <img src="../assets/icon_report_black.svg" alt="Ícone de relatórios" />
+            <p>Relatórios</p>
+        </a>
+        <a class="nav-link" href="../notes/esboco_ipsaestoque.png">
+            <img src="../assets/icon_help_black.svg" alt="Ícone de ajuda" />
+            <p>Ajuda</p>
+        </a>
+    </aside>
+
+    <!-- SECTION -->
+    <section>
+        <!-- OPÇÕES -->
+        <h5>EQUIPAMENTOS</h5>
+        <div id="options">
+            <search>Buscar</search>
+            <button class="option-btn">Filtros</button>
+        </div>
+        <!-- TABELA -->
+        <div id="table">
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Modelo</th>
+                    <th>Descrição</th>
+                    <th>Data de Aquisição</th>
+                    <th>Valor de Aquisição</th>
+                    <th>Quantidade</th>
+                    <th>Status</th>
+                    <th>Foto</th>
+                    <th>Categoria</th>
+                    <th>Ações</th>
+                </tr>
+                <tr>
+                    <td>Caixa de Som</td>
+                    <td>Som</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button class="action-btn">Editar</button> <button class="action-btn">Remover</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>teste</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 não sei o que colocar no footer
+    </footer>
+
+    <!-- <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script> -->
+    <script>
+        function toggleMenu() {
+            if (aside.style.display == 'none') {
+                aside.style.display = 'block';
+            } else {
+                aside.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>
