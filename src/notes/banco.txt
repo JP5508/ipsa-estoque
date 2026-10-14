@@ -1,7 +1,7 @@
 user: id, nome, email, senha, nivel (2-3 niveis?)
 categoria: id, nome, descrição
 equipamento: id, nome, tipo, modelo, descrição, data de aquisição, valor de aquisição, quantidade, status (disponível, manutenção, emprestado, usando, programado), foto?, id_categoria
-emprestimo: id, descrição, id_usuario, data da retirada, data prevista da devolução, data de devolução, evento(campo opcional mais pra saber se é pra algum evento ou se foi emprestado pra alguém), status(emprestado ,atrasado, devolvido)
+emprestimo: id, descrição, id_usuario, data da retirada, data prevista da devolução, data de devolução, evento(campo opcional mais pra saber se é pra algum evento ou se foi emprestado pra alguém), status(programado, emprestado ,atrasado, devolvido)
 
 mysql -u root -p
 
@@ -9,35 +9,41 @@ create database ipsa_estoque;
 
 use ipsa_estoque;
 
-create table usuario(
-usu_id int not null auto_increment,
-usu_nome varchar(30),
-usu_email varchar(30),
-usu_senha varchar(30),
-usu_nivel varchar(30),
-primary key (usu_id));
+CREATE TABLE usuario (
+usu_id INT NOT NULL AUTO_INCREMENT,
+usu_nome VARCHAR(100) NOT NULL,
+usu_email VARCHAR(255) NOT NULL,
+usu_senha VARCHAR(255) NOT NULL,
+usu_nivel VARCHAR(1) NOT NULL,
+PRIMARY KEY (usu_id),
+UNIQUE (usu_email));
 
-create table equipamento(
-equ_id int not null auto_increment,
-equ_nome varchar(30),
-equ_tipo varchar(30),
-equ_modelo varchar(30),
-equ_descricao varchar(30),
-equ_data_aquisicao varchar(30),
-equ_quantidade varchar(30),
-equ_status varchar(30),
-equ_foto varchar(30),
-equ_categoria varchar(30),
-primary key (equ_id));
+CREATE TABLE equipamento (
+equ_id INT NOT NULL AUTO_INCREMENT,
+equ_nome VARCHAR(50) NOT NULL,
+equ_tipo VARCHAR(100),
+equ_modelo VARCHAR(50),
+equ_descricao TEXT,
+equ_data_aquisicao DATE,
+equ_quantidade INT UNSIGNED NOT NULL,
+equ_status VARCHAR(10) NOT NULL,
+equ_categoria VARCHAR(50),
+equ_foto BLOB,
+PRIMARY KEY (equ_id));
 
-create table emprestimo(
-emp_id date not null,
-emp_descricao int not null,
-usu_nome int not null,
-emp_data_retirada double not null,
-emp_previsao_devolucao double not null,
-emp_data_devolucao double not null,
-emp_evento double not null,
-emp_status double not null,
-primary key (emp_data),
-foreign key (usu_nome) references usuario (usu_nome) on delete cascade on update cascade;
+CREATE TABLE emprestimo (
+emp_id INT NOT NULL AUTO_INCREMENT,
+emp_descricao TEXT,
+usu_id INT NOT NULL,
+equ_id INT NOT NULL,
+emp_data_retirada DATETIME NOT NULL,
+emp_previsao_devolucao DATETIME NOT NULL,
+emp_data_devolucao DATETIME DEFAULT NULL,
+emp_evento VARCHAR(100),
+emp_status VARCHAR(10) NOT NULL,
+
+PRIMARY KEY (emp_id),
+
+FOREIGN KEY (usu_id) REFERENCES usuario (usu_id)
+
+FOREIGN KEY (equ_id) REFERENCES equipamento (equ_id)
