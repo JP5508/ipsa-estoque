@@ -1,8 +1,3 @@
-user: id, nome, email, senha, nivel (2-3 niveis?)
-categoria: id, nome, descrição
-equipamento: id, nome, tipo, modelo, descrição, data de aquisição, valor de aquisição, quantidade, status (disponível, manutenção, emprestado, usando, programado), foto?, id_categoria
-emprestimo: id, descrição, id_usuario, data da retirada, data prevista da devolução, data de devolução, evento(campo opcional mais pra saber se é pra algum evento ou se foi emprestado pra alguém), status(programado, emprestado ,atrasado, devolvido)
-
 mysql -u root -p
 
 create database ipsa_estoque;
@@ -35,15 +30,19 @@ CREATE TABLE emprestimo (
 emp_id INT NOT NULL AUTO_INCREMENT,
 emp_descricao TEXT,
 usu_id INT NOT NULL,
-equ_id INT NOT NULL,
 emp_data_retirada DATETIME NOT NULL,
 emp_previsao_devolucao DATETIME NOT NULL,
 emp_data_devolucao DATETIME DEFAULT NULL,
 emp_evento VARCHAR(100),
 emp_status VARCHAR(10) NOT NULL,
-
 PRIMARY KEY (emp_id),
+FOREIGN KEY (usu_id) REFERENCES usuario (usu_id));
 
-FOREIGN KEY (usu_id) REFERENCES usuario (usu_id)
-
-FOREIGN KEY (equ_id) REFERENCES equipamento (equ_id)
+CREATE TABLE item (
+item_id INT NOT NULL AUTO_INCREMENT,
+emp_id INT NOT NULL,
+equ_id INT NOT NULL,
+item_quantidade INT UNSIGNED NOT NULL,
+PRIMARY KEY (item_id),
+FOREIGN KEY (emp_id) REFERENCES emprestimo (emp_id),
+FOREIGN KEY (equ_id) REFERENCES equipamento (equ_id));

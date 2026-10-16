@@ -53,7 +53,6 @@ aside {
     color: var(--black);
     background-color: var(--gray);
     width: auto;
-    display: block;
 }
 
 section {
@@ -135,10 +134,28 @@ footer {
 }
 
 #user-icon {
-
     height: 80%;
     border-radius: 50%;
     margin-left: 10px;
+}
+
+#aside {
+    display: flex;
+    flex-direction: column;
+    min-height: 88vh;
+}
+
+#nav-main {
+    display: flex;
+    flex-direction: column;
+}
+
+#nav-bottom {
+    margin-top: auto;
+}
+
+#aside.fechado .nav-link p {
+    display: none;
 }
 
 #menu-btn {
@@ -196,6 +213,31 @@ footer {
 .nav-link img {
     height: 100%;
     margin-right: 0.5rem;
+}
+
+.in-page {
+    background-color: var(--marker);
+}
+
+.search-input {
+    /* background-color: var(--test); */
+    display: flex;
+    border-radius: 1rem;
+    border: 1px solid var(--black);
+}
+
+.search-input input {
+    border: none;
+    border-radius: 1rem;
+}
+
+.search-input input {
+    border: none;
+}
+
+.search-input img {
+    background-color: var(--black);
+    border-radius: 50%;
 }
 
 /*---------------------*/
