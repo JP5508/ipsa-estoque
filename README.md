@@ -24,8 +24,23 @@ RAUL CHAVARRIA
 
 ## 📘 Descrição do Projeto
 
-Um site responsivo, criado com **HTML5**, **CSS3**, **PHP**, **JAVA SCRIPT** e **VUE.JS**, com as seguintes funcionalidades:
-- Cadastro de usuários;
-- Cadastro do estoque;
-- Sistema de empréstimo;
-- Relatórios gerais.
+Um site responsivo, criado com **HTML5**, **CSS3**, **PHP**, **JAVA SCRIPT** e **MYSQL**, com as seguintes funcionalidades:
+- Login e níveis de acesso (admin / comum);
+- Cadastro do estoque (cadastrar, editar, remover, foto, busca e filtros);
+- Sistema de empréstimo *(em desenvolvimento)*;
+- Relatórios gerais *(em desenvolvimento)*.
+
+## ▶️ Como rodar
+
+1. Copie o projeto para `C:\xampp\htdocs\ipsa-estoque` e inicie **Apache** e **MySQL** no XAMPP.
+2. Crie o banco executando `src/notes/ipsa-estoque.sql` e depois `src/notes/migracao_001.sql`.
+3. Crie o primeiro usuário administrador (no terminal):
+   ```
+   cd src/tools
+   php criar_usuario.php
+   ```
+4. Acesse `http://localhost/ipsa-estoque/`.
+
+## 📚 Documentação
+
+Veja [`docs/GUIA_DE_ESTUDO.md`](docs/GUIA_DE_ESTUDO.md) para entender a estrutura, o fluxo das páginas e os conceitos usados.
