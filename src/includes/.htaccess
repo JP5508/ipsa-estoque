@@ -1,0 +1,3 @@
+# Ninguém acessa os arquivos desta pasta pelo navegador (são só para o PHP incluir).
+# Vale para o Apache do XAMPP. O servidor embutido do PHP (php -S) ignora .htaccess.
+Require all denied

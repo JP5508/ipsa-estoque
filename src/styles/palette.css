@@ -10,6 +10,14 @@
     --light-green: #1a8c54;
     --marker: #FEE7B2;
     --test: #9d00ff;
+
+    /* NOVAS: cores para erro/perigo e bordas (usadas em componentes.css) */
+    --danger: #b3261e;
+    --danger-dark: #8c1d18;
+    --danger-bg: #fbe4e2;
+    --success-bg: #d9f2e4;
+    --info-bg: #e3eefb;
+    --border: #d4d4d4;
 }
 
 .bg-test {

@@ -1,7 +1,10 @@
-/*---------------------*/
-/*-------IMPORTS-------*/
-/*---------------------*/
-@import url(./palette.css);
+/*
+ * home.css — layout geral (body, header, aside, section, footer, tabela).
+ * Linhas marcadas com [MUDANÇA] foram alteradas em relação à sua versão.
+ *
+ * [MUDANÇA] O "@import url(./palette.css)" saiu daqui: o palette.css agora é
+ * carregado por <link> no header.php (mais rápido, o navegador baixa em paralelo).
+ */
 
 /*---------------------*/
 /*--------BODY---------*/
@@ -10,6 +13,9 @@
 * {
     margin: 0;
     padding: 0;
+    /* [MUDANÇA] box-sizing: border-box faz padding/borda ficarem DENTRO da largura/altura
+       definida. Sem isso, "width: 100%" + "padding: 1rem" estoura o container. */
+    box-sizing: border-box;
 }
 
 html {
@@ -21,14 +27,19 @@ html {
 
 body {
     display: grid;
-    grid-template-columns: auto 1fr;
+    /* [MUDANÇA] minmax(0, 1fr) em vez de 1fr: um item de grid tem "min-width: auto"
+       e se recusa a ficar menor que seu conteúdo. Uma tabela larga empurrava a página
+       inteira para o lado. Com minmax(0, ...) a coluna pode encolher e a tabela
+       rola dentro do #table (overflow-x: auto). */
+    grid-template-columns: auto minmax(0, 1fr);
     grid-template-rows: auto 1fr auto;
     grid-template-areas:
         "header header"
         "aside section"
         "footer footer";
+    /* [MUDANÇA] min-height garante que o footer fique no fim da tela mesmo em páginas curtas */
+    min-height: 100vh;
     overflow-x: clip;
-    /* Bloqueia overflow horizontal */
     overscroll-behavior-x: none;
 }
 
@@ -38,14 +49,16 @@ header {
     z-index: 10;
     top: 0;
     display: flex;
-    justify-content: stretch;
-    /* NÃO LEMBRO OQ ISSO FAZ*/
+    /* [MUDANÇA] removi "justify-content: stretch" (você perguntou o que fazia):
+       em flexbox, "stretch" no eixo principal se comporta como "flex-start", ou seja,
+       não fazia nada. O alinhamento à direita já vem do "margin-left: auto" no #user-link. */
     align-items: center;
     padding-left: 1rem;
     padding-right: 1rem;
     color: var(--white);
     background-color: var(--light-green);
     height: 8vh;
+    min-height: 3.5rem; /* [MUDANÇA] em telas baixas 8vh ficava minúsculo */
 }
 
 aside {
@@ -59,9 +72,10 @@ section {
     grid-area: section;
     color: var(--black);
     background-color: var(--white);
-    height: 88vh;
-    /* PENSAR MELHOR QUANTO A ISSO */
-    padding: 1%;
+    /* [MUDANÇA] "height: 88vh" cortava o conteúdo (ou deixava um vão) quando a tabela
+       crescia. min-height deixa a seção CRESCER conforme o conteúdo. */
+    min-height: 0;
+    padding: 1rem;
 }
 
 table {
@@ -94,7 +108,9 @@ footer {
     grid-area: footer;
     color: var(--white);
     background-color: var(--light-green);
-    height: 4vh;
+    min-height: 4vh; /* [MUDANÇA] era height fixo: o texto quebrava de linha e vazava no celular */
+    padding: 0.5rem 1rem;
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,6 +124,8 @@ footer {
     height: 100%;
 }
 
+/* [MUDANÇA] #user-link agora é uma <div> (antes um <a href> que levava a admin.php,
+   página que ainda não existe). Mantive todos os seus estilos. */
 #user-link {
     height: 50%;
     font-size: clamp(0.5rem, 2vw, calc(1vw + 0.3rem));
@@ -139,10 +157,14 @@ footer {
     margin-left: 10px;
 }
 
+#logout-form {
+    margin-left: 0.5rem;
+}
+
 #aside {
     display: flex;
     flex-direction: column;
-    min-height: 88vh;
+    /* [MUDANÇA] removi "min-height: 88vh": o grid já estica o aside até o footer. */
 }
 
 #nav-main {
@@ -180,13 +202,16 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin: 1rem; */
+    flex-wrap: wrap; /* [MUDANÇA] no celular os botões quebram de linha em vez de estourar */
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 #table {
-    height: 100%;
-    /* DEPOIS EU VEJO MELHOR O QUE ISSO FAZ */
-    overflow-y: auto;
+    /* [MUDANÇA] removi "height: 100%" (você anotou "depois eu vejo o que isso faz"):
+       percentual de altura só funciona se o PAI tiver altura definida. Aqui o pai
+       não tinha mais, então não fazia nada. O que importa é o overflow-x: auto,
+       que cria a barra de rolagem horizontal só na tabela. */
     overflow-x: auto;
 }
 
@@ -203,7 +228,6 @@ footer {
     border-radius: 0.5rem;
     color: var(--black);
     text-decoration: none;
-    /* font-size: clamp(0.5rem, 2vw, calc(1vw + 0.3rem)); */
 }
 
 .nav-link:hover {
@@ -220,19 +244,28 @@ footer {
 }
 
 .search-input {
-    /* background-color: var(--test); */
     display: flex;
+    align-items: center;
     border-radius: 1rem;
     border: 1px solid var(--black);
+    overflow: hidden;
 }
 
+/* [MUDANÇA] havia duas regras ".search-input input" repetidas; juntei em uma. */
 .search-input input {
     border: none;
     border-radius: 1rem;
+    padding: 0.5rem 0.75rem;
+    outline: none;
 }
 
-.search-input input {
+/* [MUDANÇA] o ícone agora fica dentro de um <button type="submit"> para a lupa funcionar */
+.search-input button {
     border: none;
+    background: none;
+    padding: 0.15rem;
+    cursor: pointer;
+    display: flex;
 }
 
 .search-input img {
@@ -245,42 +278,62 @@ footer {
 /*---------------------*/
 
 h1 {
-    /* font-size: clamp(3rem, 7vw, 4rem); */
     font-size: clamp(3rem, 7vw, calc(1vw + 3rem));
 }
 
 h2 {
-    /* font-size: clamp(2.5rem, 6vw, 3.5rem); */
     font-size: clamp(2.5rem, 6vw, calc(1vw + 2.5rem));
 }
 
 h3 {
-    /* font-size: clamp(2rem, 5vw, 3rem); */
     font-size: clamp(2rem, 5vw, calc(1vw + 2rem));
 }
 
 h4 {
-    /* font-size: clamp(1.5rem, 4vw, 2.5rem); */
     font-size: clamp(1.5rem, 4vw, calc(1vw + 1.5rem));
 }
 
 h5 {
-    /* font-size: clamp(1rem, 3vw, 2rem); */
     font-size: clamp(1rem, 3vw, calc(1vw + 1rem));
 }
 
 p {
-    /* font-size: clamp(0.5rem, 2vw, 1.5rem); */
-    /* font-size: clamp(0.5rem, 2vw, calc(1vw + 0.3rem)); */
     font-size: clamp(0.8rem, 2vw, calc(1vw + 0.5rem));
 }
 
 a {
-    /* font-size: clamp(0.5rem, 2vw, 1.5rem); */
-    /* font-size: clamp(0.5rem, 2vw, calc(1vw + 0.2rem)); */
     font-size: clamp(0.8rem, 2vw, calc(1vw + 0.3rem));
 }
 
 /*---------------------*/
 /*--------MOBILE-------*/
 /*---------------------*/
+
+/* [MUDANÇA] esta seção estava vazia. No celular o menu vira uma gaveta por cima do
+   conteúdo (position: fixed) e começa fechado (o script.js cuida disso). */
+@media (max-width: 768px) {
+    body {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "header"
+            "section"
+            "footer";
+    }
+
+    #aside {
+        position: fixed;
+        top: max(8vh, 3.5rem);
+        bottom: 0;
+        left: 0;
+        z-index: 9;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.25);
+    }
+
+    #aside.fechado {
+        display: none;
+    }
+
+    #aside.fechado .nav-link p {
+        display: block;
+    }
+}
